@@ -2,17 +2,19 @@
 
 import React from "react";
 
-class Weather extends React.Component<{}, {}> {
-    constructor(props) {
+class Weather extends React.Component<{}, LocationProp> {
+    constructor(props: LocationProp) {
         super(props)
-        this.state = {}; // Reference 3.02
+        this.state = {
+            position: new Geolocation()
+        }; // Reference 3.02
     }
 
     componentDidMount() {
         navigator.geolocation.getCurrentPosition(
-            function(position) {
-            console.log(position)
-        }
+            (position) => {
+            new Geolocation();
+        },
         function(error) {
             console.error("unable to determine your location")
         });
@@ -21,7 +23,7 @@ class Weather extends React.Component<{}, {}> {
     render(){
         return(
             <div>
-
+                <h2>Get Weather (from this.state...)</h2> // needs to be updated
             </div>
         )
     }
